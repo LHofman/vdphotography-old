@@ -1,0 +1,15 @@
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <div>
+      <h1>Photos</h1>
+      <ul>
+        <li *ngFor="let photo of photos" (click)="onClick($event, photo)">
+          <app-photo [photo]="photo"></app-photo>
+        </li>
+      </ul>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-photo-details [photo]="photo"></app-photo-details>
+  </mat-grid-tile>
+</mat-grid-list>
