@@ -9,7 +9,7 @@
       </ul>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile>
+  <mat-grid-tile *ngIf="photo">
     <app-photo-details [photo]="photo"></app-photo-details>
   </mat-grid-tile>
 </mat-grid-list>

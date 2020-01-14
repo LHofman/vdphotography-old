@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Photo } from '../photo';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
   selector: 'app-photos',
@@ -8,28 +9,17 @@ import { Photo } from '../photo';
 })
 export class PhotosComponent implements OnInit {
 
-  constructor() { }
+  constructor(public photoService: PhotoService) { }
+
+  photos: Photo[];
 
   ngOnInit() {
+    this.photoService.getPhotos().subscribe((data: []) => {
+      this.photos = data.sort((p1: Photo, p2: Photo) => p1.name < p2.name ? -1 : 1);
+    })
   }
 
-  photos: Photo[] = [
-    {
-      id: "1",
-      name: "Pichu",
-      file: "Test"
-    },
-    {
-      id: "2",
-      name: "Pichu 2",
-      file: "Test"
-    }
-  ];
-  photo: Photo = {
-    id: "1",
-    name: "Pichu",
-    file: "Test"
-  }
+  photo: Photo;
 
   onClick(event: Event, photo: Photo): void {
     this.photo = photo;
