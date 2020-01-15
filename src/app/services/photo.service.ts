@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { Photo } from '../components/photos/photo';
 
@@ -13,6 +13,12 @@ export class PhotoService {
 
   getPhotos(): Observable<Photo[]> {
     return this.http.get<Photo[]>('/api/photos').pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  createPhoto(photo: Photo): Observable<Photo> {
+    return this.http.post<Photo>('/api/photos', photo).pipe(
       catchError(this.handleError)
     );
   }

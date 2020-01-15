@@ -1,15 +1,12 @@
-<mat-grid-list cols="2">
-  <mat-grid-tile>
-    <div>
-      <h1>Photos</h1>
-      <ul>
-        <li *ngFor="let photo of photos" (click)="onClick($event, photo)">
-          <app-photo [photo]="photo"></app-photo>
-        </li>
-      </ul>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile *ngIf="photo">
+<div>
+  <div style="float:left; display:inline; width: 45%; margin-right: 5%">
+    <mat-grid-list cols="3">
+      <mat-grid-tile *ngFor="let photo of photos" (click)="onClick($event, photo)">
+        <app-photo [photo]="photo"></app-photo>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="photo" style="float:left; display:inline; width: 45%;">
     <app-photo-details [photo]="photo"></app-photo-details>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+</div>
